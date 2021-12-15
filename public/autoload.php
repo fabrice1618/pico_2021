@@ -8,7 +8,7 @@ spl_autoload_register( function($className){
         throw new \Exception("Autoload Exception : Basepath not defined", 1);
     }
 
-    $dirList = ['view', 'model', 'controller'];
+    $dirList = ['class', 'controller'];
 
     $classLoaded = false;
 
@@ -22,8 +22,7 @@ spl_autoload_register( function($className){
         }
     }
     if(! $classLoaded){
-        throw new \Exception("Autoload Exception : class ". $className." is not load", 1);
+        throw new \Exception("Autoload Exception : classe ". $className." non chargée", 1);
     }
-
 
 });
