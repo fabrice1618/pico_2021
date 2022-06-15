@@ -25,5 +25,10 @@ class Session
         }
     return( self::$instance );
    }
+
+   public function isAuth()
+   {
+       return(false);
+   }
     
 }
