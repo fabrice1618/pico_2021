@@ -8,12 +8,12 @@ spl_autoload_register( function($className){
         throw new \Exception("Autoload Exception : Basepath not defined", 1);
     }
 
-    $dirList = ['class', 'controller'];
+    $dirList = ['class', 'controller', 'view', 'model'];
 
     $classLoaded = false;
 
     foreach($dirList as $dirName){
-        $file = $basePath.'/'.$dirName.'/'.$className.'.php';
+        $file = $basePath.'/app/'.$dirName.'/'.$className.'.php';
 
         if( !$classLoaded && file_exists($file) ){
             $classLoaded = true;

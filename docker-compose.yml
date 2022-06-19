@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  web:
+    container_name: pico_web
+    build:
+      context: .
+      dockerfile: Dockerfile_php8
+    volumes:
+      - ./pico:/var/www/html
+    ports:
+      - "8080:80"
+    restart: always
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9000 remote_enable=1
+
+  maquette:
+    container_name: pico_maquette
+    image: httpd:2.4
+    volumes:
+      - ./maquette:/usr/local/apache2/htdocs
+    ports:
+      - "8085:80"
+    restart: always
+
+  mysql:
+    container_name: pico_mysql
+    restart: always
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pwd
+      MYSQL_DATABASE: pico
+      MYSQL_USER: pico
+      MYSQL_PASS: pico_pwd
+    volumes:
+      - picobd-volume:/var/lib/mysql
+
+volumes:
+  picobd-volume:
